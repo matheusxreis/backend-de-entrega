@@ -1,0 +1,4 @@
+yarn prisma init      #iniciar as configurações do prisma
+yarn prisma migrate dev        #criar uma migration 
+yarn prisma format       #criar a relação
+
