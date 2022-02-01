@@ -9,17 +9,14 @@ export class CreateClientController {
 
         const createClientUseCase = new CreateClientUseCase()
 
-    try{       
+      
         const result = await createClientUseCase.execute({
             username,
             password
         })
     
         return response.status(201).json(result)
-    }catch(err){
-            return response.status(400).send()
-        }
-
+   
    
        
     }
