@@ -1,4 +1,4 @@
 yarn prisma init      #iniciar as configurações do prisma
 yarn prisma migrate dev        #criar uma migration 
 yarn prisma format       #criar a relação
-
+yarn prisma migrate deploy  #aplicar as migrations pendentes ao db, igual o typeorm run
