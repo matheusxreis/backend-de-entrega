@@ -8,6 +8,9 @@ export class FindAllAvailableUseCase {
             where: {
                 end_at: {
                     equals:null
+                },
+                id_deliveryman:{
+                    equals: null
                 }
             }
         })
