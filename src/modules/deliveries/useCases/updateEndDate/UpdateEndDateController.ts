@@ -8,7 +8,7 @@ export class UpdateEndDateController {
 
         const updateEndDateUseCase = new UpdateEndDateUseCase()
 
-        const delivery = updateEndDateUseCase.execute({
+        const delivery = await updateEndDateUseCase.execute({
             id_delivery,
             id_deliveryman
         })

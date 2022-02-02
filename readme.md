@@ -111,7 +111,14 @@ Os módulos da aplicação estão divididos em cliets, deliveryman e deliveries,
 
   Permite a um entregador escolher um pedido para entregar. 
   Somente o entregador tem acesso a rota e é necessário estar autenticado para efetuar um pedido.
-  O id é do pedido é passado via req.params.
+  O id é do pedido é passado via req.params e o do entregador é passado na autenticação.
+
+
+- **PUT /delivery/updateenddate/:id**:
+
+  Permite a um entregador quem pegou o pedido finalizar a entrega.
+  Somente o entregador tem acesso a rota e é necessário estar autenticado para efetuar um pedido.
+  O id é do pedido é passado via req.params e o do entregador é passado na autenticação.
 
 
 Excelente módulo e projeto! Reforçou alguns conceitos referente a SOLID, ao JWT, a ORMs, relações em Banco de Dados e me apresentou uma nova tecnologia extremamente útil: o Prisma.
