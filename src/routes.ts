@@ -8,7 +8,9 @@ import { ensureAuthenticateClient} from './middlewares/ensureAuthenticateClient'
 import { ensureAuthenticateDeliveryman } from './middlewares/ensureAuthenticateDeliveryman'
 import { FindAllAvailableController } from './modules/deliveries/useCases/findAllAvailable/FindAllAvailableController'
 import { UpdateDeliveryController } from './modules/deliveries/useCases/updateDeliveryman/UpdateDeliverymanController'
-import { FindAllDeliveriesController } from './modules/clients/useCases/deliveries/FindAllDeliveriesController'
+import { FindAllDeliveriesController } from './modules/clients/useCases/findAllDeliveriesClient/FindAllDeliveriesController'
+import { FindAllDeliveriesDeliverymanController } from './modules/deliveryman/useCases/findAllDeliveriesDeliveryman/FindAllDeliveriesDeliverymanController'
+import { UpdateEndDateController } from './modules/deliveries/useCases/updateEndDate/UpdateEndDateController'
 
 const routes = Router()
 
@@ -22,6 +24,8 @@ const createDeliveryController = new CreateDeliveryController()
 const findAllAvailableController = new FindAllAvailableController()
 const updateDeliveryController = new UpdateDeliveryController()
 const findAllDeliveriesController = new FindAllDeliveriesController()
+const findAllDeliveriesDeliverymanController = new FindAllDeliveriesDeliverymanController()
+const updateEndDateController = new UpdateEndDateController()
 
 routes.post('/client', createClientController.handle)
 routes.post('/client/authenticate', authenticateClientController.handle)
@@ -47,5 +51,14 @@ routes.put('/delivery/updatedeliveryman/:id',
  ,findAllDeliveriesController.handle)
 // No express, o que for passado após minha rota, funciona automaticamente como um middleware.
 // Por tanto, passando apenas o controler, o request e response já irão automaticamente pra ele
+
+routes.get('/deliveryman/deliveries', 
+ensureAuthenticateDeliveryman,
+findAllDeliveriesDeliverymanController.handle)
+
+routes.put('/delivery/updateenddate/:id',
+ensureAuthenticateDeliveryman,
+updateEndDateController.handle
+)
 
 export { routes }

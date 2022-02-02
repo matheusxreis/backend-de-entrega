@@ -27,14 +27,33 @@ Os módulos da aplicação estão divididos em cliets, deliveryman e deliveries,
    Faz o cadastro de um novo cliente.
    Precisa do username e password do req.body.
 
+     Exemplo do que enviar no body:
+   ```json
+    {
+        "username":"matheusxreis",
+        "password":"123455678"
+    }
+   ```
+
 - **POST /client/authenticate**:
 
-  Rota para login, que confirma a existência do cliente no banco de dados e retornar um JWT para o frontend.
+  Rota para login, que confirma a existência do cliente no banco de dados e retornar um JWT para o frontend. 
+  Os dados são enviados via req.body.
 
 - **GET /client/deliveries**:
 
   Lista todos os pedidos feito por aquele cliente.
   É necessário estar autenticado e enviar o token no header.authorization.
+  O id do cliente é recebido automaticamente após a autenticação.
+
+  Exemplo de como enviar o token no front:
+    ```json
+    {   
+        "Headers": {
+            "Authorization":"token"
+        }
+    }
+   ```
 
 **/deliveryman:**
 
@@ -42,10 +61,32 @@ Os módulos da aplicação estão divididos em cliets, deliveryman e deliveries,
 
    Faz o cadastro de um novo entregador.
    Precisa do username e password do req.body.
+    Exemplo do que enviar no body:
+   ```json
+    {
+        "username":"matheusxreis",
+        "password":"123455678"
+    }
+   ```
 
 - **POST /deliveryman/authenticate**:
 
   Rota para login, que confirma a existência do entregador no banco de dados e retornar um JWT para o frontend.
+
+  **GET /deliveryman/deliveries**:
+
+  Lista todos os pedidos pegos por aquele entregador.
+  É necessário estar autenticado e enviar o token no header.authorization.
+  O id do entregador é recebido automaticamente após a autenticação.
+
+  Exemplo de como enviar o token no front:
+    ```json
+    {   
+        "Headers": {
+            "Authorization":"token"
+        }
+    }
+   ```
 
 **/delivery:**
 
@@ -54,6 +95,12 @@ Os módulos da aplicação estão divididos em cliets, deliveryman e deliveries,
   Permite um cliente fazer o cadastro de um novo pedido.
   Precisa do item_name do req.body, enquanto o id do cliente é capturado em uma propriedade da request.
   Somente o cliente tem acesso a rota e é necessário estar autenticado para efetuar um pedido.
+    Exemplo
+   ```json
+    {
+        "item_name":"Headphone Multilaser"
+    }
+   ```
 
 - **GET /delivery/available**:
 
@@ -69,6 +116,7 @@ Os módulos da aplicação estão divididos em cliets, deliveryman e deliveries,
 
 Excelente módulo e projeto! Reforçou alguns conceitos referente a SOLID, ao JWT, a ORMs, relações em Banco de Dados e me apresentou uma nova tecnologia extremamente útil: o Prisma.
 
+That's all folks! Never stop learning! :metal:
 
 
 

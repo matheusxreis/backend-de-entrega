@@ -9,8 +9,10 @@ async execute(id_client:string){
                 equals: id_client
             },
         },
-        include: {
-            deliveries: true
+        select: {
+            deliveries: true,
+            id: true,
+            username: true
         }
 
     })
