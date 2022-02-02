@@ -17,7 +17,7 @@ O módulo, como o título já diz, se trata de um backend de entregas, onde há 
 
 ### :car: Rotas:
 
-Os módulos da aplicação estão divididos em cliets, deliveryman e deliveries, assim como as tabelas no banco de dados.
+Os módulos da aplicação estão divididos em clients, deliveryman e deliveries, assim como as tabelas no banco de dados.
 
 
 **/client:**
@@ -38,7 +38,7 @@ Os módulos da aplicação estão divididos em cliets, deliveryman e deliveries,
 - **POST /client/authenticate**:
 
   Rota para login, que confirma a existência do cliente no banco de dados e retornar um JWT para o frontend. 
-  Os dados são enviados via req.body.
+  O username e password são enviados via req.body.
 
 - **GET /client/deliveries**:
 
@@ -61,17 +61,19 @@ Os módulos da aplicação estão divididos em cliets, deliveryman e deliveries,
 
    Faz o cadastro de um novo entregador.
    Precisa do username e password do req.body.
-    Exemplo do que enviar no body:
+   
+
+- **POST /deliveryman/authenticate**:
+
+  Rota para login, que confirma a existência do entregador no banco de dados e retornar um JWT para o frontend.
+  O username e password são enviados via req.body.
+   Exemplo do que enviar no body:
    ```json
     {
         "username":"matheusxreis",
         "password":"123455678"
     }
    ```
-
-- **POST /deliveryman/authenticate**:
-
-  Rota para login, que confirma a existência do entregador no banco de dados e retornar um JWT para o frontend.
 
   **GET /deliveryman/deliveries**:
 
@@ -93,9 +95,9 @@ Os módulos da aplicação estão divididos em cliets, deliveryman e deliveries,
 - **POST /delivery**:
 
   Permite um cliente fazer o cadastro de um novo pedido.
-  Precisa do item_name do req.body, enquanto o id do cliente é capturado em uma propriedade da request.
+  Precisa do item_name do req.body, e o id do cliente é capturado após autenticação.
   Somente o cliente tem acesso a rota e é necessário estar autenticado para efetuar um pedido.
-    Exemplo
+  Exemplo do que enviar no body:
    ```json
     {
         "item_name":"Headphone Multilaser"
@@ -116,7 +118,7 @@ Os módulos da aplicação estão divididos em cliets, deliveryman e deliveries,
 
 - **PUT /delivery/updateenddate/:id**:
 
-  Permite a um entregador quem pegou o pedido finalizar a entrega.
+  Permite ao entregador qual pegou o pedido finalizar a entrega.
   Somente o entregador tem acesso a rota e é necessário estar autenticado para efetuar um pedido.
   O id é do pedido é passado via req.params e o do entregador é passado na autenticação.
 
